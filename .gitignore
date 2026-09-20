@@ -1,0 +1,10 @@
+# Local user data and runtime state must stay off the public repository.
+data/*
+!data/.keep
+qa/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+*.log

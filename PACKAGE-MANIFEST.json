@@ -1,0 +1,74 @@
+{
+  "version": "0.2.0",
+  "files": [
+    {
+      "path": "server.py",
+      "sha256": "5eee88450c540c0644b231b9d2a467aef3ab3b87730685776b00b287bb0fc65d"
+    },
+    {
+      "path": "export_service.py",
+      "sha256": "54b3f0e5044e0b0e992fa9d70ac3834c45045e42cf7a8d1e711973064d74312c"
+    },
+    {
+      "path": "打开动画卡片实验室.command",
+      "sha256": "d414f943192ccb0383fe2e89f52c7c79a3c4ea35c6b01c4a859a6bed74b25b0d"
+    },
+    {
+      "path": "开始使用.md",
+      "sha256": "0fb1a0e887cd2cb47ce184db83ccf1c72697a3e1910b94592bd77622315ed86d"
+    },
+    {
+      "path": "DEPENDENCIES.md",
+      "sha256": "0f79da0d14e1cdf9dab9b9a86c969a77bbc1696c836cbbebba5bf8ccd298231d"
+    },
+    {
+      "path": "LICENSE.md",
+      "sha256": "6333c8fcad0d671ac6006ce4adaed22120447d3ad4e4fb8c371640ffc1120f64"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "sha256": "d7bd04d654b1ab0e74d107c63cfed9bae301af47e28347d80989c3466c8bd293"
+    },
+    {
+      "path": "README.md",
+      "sha256": "75cfde1a4f7b06ee296f19e93b95de7f939a1e696638fbcfc1f9fe377ac8da55"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "dbbe69a238344f6dd8914bba9c5f2769d67f989c614701ee4df9aefafc1051b3"
+    },
+    {
+      "path": "scripts/open-lab.py",
+      "sha256": "8a9c900d2852a0506c041b63c8b54432c205ccd09c4ddbab1a4edcce67018781"
+    },
+    {
+      "path": "web/app.js",
+      "sha256": "98f360462d2fa32865ddecccd48d65d8c6a9087839eb3004a790596f13c616ed"
+    },
+    {
+      "path": "web/index.html",
+      "sha256": "e5e8dbb00a8283f675db6b6c44eaf026ce94c91e310dd4736b97d9db333dafd0"
+    },
+    {
+      "path": "web/renderer.js",
+      "sha256": "af63b9ec45401689463e4a180fb1431bda8343c1e7ee03c7e5f5844959e3f624"
+    },
+    {
+      "path": "web/style.css",
+      "sha256": "bcfd6bb3b2e0f3146ddcb7ea9034cf6479bdf1bd52a70b50f02b507b2aaa55ae"
+    },
+    {
+      "path": "web/trial.js",
+      "sha256": "454916787680b285feabc3e467ebf7c2237b342d54982b4666db7ae0df9823a8"
+    }
+  ],
+  "excludes": [
+    "media",
+    "references",
+    "library",
+    "qa",
+    "cookies",
+    "cloud_config",
+    "dev_runtime"
+  ]
+}
