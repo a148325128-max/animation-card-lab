@@ -79,6 +79,77 @@ function renderCard(c,t){
   inner+=text(c.subtitle,0,vertical?205:153,22,c.ink,600,'middle',pw*.62);
   inner+='</g></g>';
  }
+ // Eight additional layouts, drawn independently with the same editable card data.
+ const ease=n=>1-Math.pow(1-clamp(n),3);
+ const reveal=(delay=0)=>ease((local-delay)/Math.max(.1,c.motion.enter));
+ const panel=(xx,yy,ww,hh,fill='#fffef9',radius=24)=>`<rect x="${xx}" y="${yy}" width="${ww}" height="${hh}" rx="${radius}" fill="${esc(fill)}"/>`;
+ const heading=()=>text(c.title,0,vertical?-420:-212,Math.min(font*.48,42),c.ink,700);
+ const caption=()=>text(c.subtitle,0,vertical?440:240,24,c.ink,500,'middle',width-40);
+ if(c.kind==='quote'){
+  inner=heading()+panel(-width/2,vertical?-295:-155,width,vertical?580:340);
+  inner+=text('“',-width/2+58,vertical?-170:-43,120,c.accent,750,'start');
+  inner+=text(c.value,0,vertical?-115:-35,Math.min(font*.59,52),c.ink,650,'middle',width-120);
+  const lineW=(width-150)*reveal(.25);
+  inner+=`<path d="M ${-width/2+75} ${vertical?115:91} h ${lineW}" stroke="${esc(c.accent)}" stroke-width="9" stroke-linecap="round"/>`;
+  inner+=text(c.unit,0,vertical?220:151,24,c.ink,500)+caption();
+ }else if(c.kind==='checklist'){
+  inner=heading();const bw=vertical?550:970;
+  c.steps.slice(0,3).forEach((s,i)=>{
+   const yy=vertical?-290+i*200:-135+i*107,a=reveal(i*c.motion.stagger),cy=yy+(vertical?76:40);
+   inner+=`<g opacity="${a}" transform="translate(${(1-a)*24} 0)">`+panel(-bw/2,yy,bw,vertical?163:88);
+   inner+=panel(-bw/2+24,cy-18,36,36,c.accent,10);
+   inner+=`<path d="M ${-bw/2+32} ${cy} l 7 8 l 14 -17" fill="none" stroke="${esc(c.ink)}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${1-a}"/>`;
+   inner+=text(s,-bw/2+85,cy+10,Math.min(font*.38,32),c.ink,600,'start',bw-120)+'</g>';
+  });inner+=caption();
+ }else if(c.kind==='timeline'){
+  inner=heading();const span=vertical?560:840,xx=vertical?-220:-420,yy=vertical?-270:-15;
+  inner+=`<path d="M ${xx} ${yy} ${vertical?'v':'h'} ${span}" stroke="${esc(c.accent)}" stroke-width="7" fill="none" pathLength="1" stroke-dasharray="1" stroke-dashoffset="${1-reveal(.15)}"/>`;
+  c.steps.slice(0,3).forEach((s,i)=>{
+   const px=vertical?xx:xx+i*span/2,py=vertical?yy+i*span/2:yy,a=reveal(i*c.motion.stagger);
+   inner+=`<g opacity="${a}"><circle cx="${px}" cy="${py}" r="23" fill="${esc(c.accent)}"/><circle cx="${px}" cy="${py}" r="8" fill="${esc(c.ink)}"/>`;
+   inner+=text('0'+(i+1),vertical?px+62:px,vertical?py-20:py-60,24,c.ink,700,vertical?'start':'middle');
+   inner+=text(s,vertical?px+62:px,vertical?py+25:py+72,Math.min(font*.36,31),c.ink,600,vertical?'start':'middle',vertical?405:290)+'</g>';
+  });inner+=caption();
+ }else if(c.kind==='bars'){
+  inner=heading();const bw=vertical?540:1020,max=Math.max(1,...c.rows.map(r=>Number(r.value))),trackW=bw-(vertical?140:230);
+  c.rows.slice(0,3).forEach((r,i)=>{
+   const yy=vertical?-270+i*200:-113+i*105,a=reveal(i*c.motion.stagger);
+   inner+=text(r.label,-bw/2,yy,26,c.ink,600,'start',trackW);
+   inner+=panel(-bw/2,yy+24,trackW,vertical?38:24,'#ffffff',10);
+   inner+=panel(-bw/2,yy+24,trackW*clamp(Number(r.value)/max)*a,vertical?38:24,c.accent,10);
+   inner+=text(r.value+(r.unit?' '+r.unit:''),bw/2,yy+(vertical?55:47),vertical?23:27,c.ink,700,'end',vertical?130:220);
+  });inner+=caption();
+ }else if(c.kind==='progress'){
+  inner=heading();const radius=vertical?177:148,circ=2*Math.PI*radius,a=reveal(.12),fraction=clamp(Number(c.value)/100)*a;
+  inner+=`<circle r="${radius}" fill="none" stroke="#ffffff" stroke-width="28"/><circle r="${radius}" fill="none" stroke="${esc(c.accent)}" stroke-width="28" stroke-linecap="${fraction>0?'round':'butt'}" stroke-dasharray="${fraction*circ} ${circ}" transform="rotate(-90)"/>`;
+  inner+=text((a>=1?c.value.trim():String(Math.round(Number(c.value)*a)))+'%',0,10,Math.min(font*.85,80),c.ink,750);
+  inner+=text(c.unit,0,65,24,c.ink,500,'middle',radius*1.6)+caption();
+ }else if(c.kind==='typewriter'){
+  inner=heading()+panel(-width/2,vertical?-280:-145,width,vertical?560:345);
+  const available=Math.max(.1,c.duration-(trigger.time||0)-c.motion.exit),revealTime=Math.min(1.6,available*.65),a=clamp(local/revealTime);
+  const chars=Array.from(c.value),count=Math.floor(chars.length*a);
+  inner+=text('●  '+c.unit,-width/2+40,vertical?-207:-86,21,c.ink,500,'start',width-80);
+  inner+=text(chars.slice(0,count).join('')+(a<1?'▌':''),-width/2+40,vertical?-80:10,Math.min(font*.58,52),c.ink,700,'start',width-100);
+  inner+=`<path d="M ${-width/2+40} ${vertical?220:150} h ${(width-80)*a}" stroke="${esc(c.accent)}" stroke-width="5"/>`;
+  inner+=caption();
+ }else if(c.kind==='lowerthird'){
+  inner=text(c.title,0,vertical?-315:-165,Math.min(font*.55,48),c.ink,600,'middle',width-60);
+  const bw=vertical?550:1000,yy=vertical?100:12,hh=vertical?255:184,a=reveal(.15);
+  inner+=`<g transform="translate(${(1-a)*-65} 0)" opacity="${a}">`+panel(-bw/2,yy,bw,hh);
+  inner+=panel(-bw/2,yy,12,hh,c.accent,6);
+  inner+=text(c.value,-bw/2+40,yy+(vertical?79:64),Math.min(font*.63,54),c.ink,750,'start',bw-80);
+  inner+=text(c.unit,-bw/2+40,yy+(vertical?168:123),25,c.ink,500,'start',bw-80)+'</g>';
+  inner+=caption();
+ }else if(c.kind==='metrics'){
+  inner=heading();c.rows.slice(0,3).forEach((r,i)=>{
+   const bw=vertical?550:342,xx=vertical?0:(i-1)*371,yy=vertical?-300+i*227:-122,a=reveal(i*c.motion.stagger);
+   inner+=`<g opacity="${a}" transform="translate(0 ${(1-a)*30})">`+panel(xx-bw/2,yy,bw,vertical?198:290,i===1?c.accent:'#ffffff');
+   inner+=text(r.label,xx,yy+43,23,c.ink,500,'middle',bw-40);
+   const size=Math.min(font*.83,(bw-50)/Math.max(1,Array.from(r.value).reduce((n,ch)=>n+(/[\x00-\x7F]/.test(ch)?.6:1),0)));
+   inner+=text(r.value,xx,yy+(vertical?115:148),size,c.ink,750,'middle',bw-40);
+   inner+=text(r.unit,xx,yy+(vertical?168:229),22,c.ink,500,'middle',bw-40)+'</g>';
+  });inner+=caption();
+ }
  const safeLogo=/^data:image\/(png|jpeg|webp);base64,[a-z0-9+/=]+$/i.test(c.logo||'')?c.logo:null;
  return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" style="font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif"><rect width="${w}" height="${h}" fill="${esc(c.background)}"/><circle cx="${w*.9}" cy="${h*.13}" r="${w*.21}" fill="${esc(c.accent)}" opacity=".12"/><path d="M ${w*.08} ${h*.13} H ${w*.92}" stroke="${esc(c.ink)}" opacity=".12"/>${text(c.brand,w*.08,h*.087,20,c.ink,600,'start',w*.65)}${safeLogo?`<image href="${esc(safeLogo)}" x="${w-125}" y="${h*.035}" width="62" height="62" preserveAspectRatio="xMidYMid meet"/>`:''}<g opacity="${alpha}" transform="translate(${x} ${y+shift}) scale(${zoom*c.layout.scale})">${inner}</g>${text(c.footer,w/2,h*.937,18,c.ink,400,'middle',w*.84)}</svg>`;
 }

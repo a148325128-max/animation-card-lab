@@ -58,7 +58,7 @@ class Handler(BaseHTTPRequestHandler):
             refs=[json.loads(p.read_text()) for p in sorted((DATA/'references').glob('*/analysis.json'))]
             cards=[json.loads(p.read_text()) for p in sorted((DATA/'library').glob('*.json'))]
             cards.sort(key=lambda c:c.get('saved_at','')); refs.sort(key=lambda r:r.get('created_at',''))
-            return self.json({'app':'animation-card-lab','instance_id':hashlib.sha256(str(ROOT).encode()).hexdigest()[:16],'references':refs,'cards':cards,'default_source':str(SOURCE.relative_to(PROJECT)) if SOURCE.exists() else '', 'version':'0.2.0', 'capabilities':{'ffmpeg':bool(shutil.which('ffmpeg')),'ffprobe':bool(shutil.which('ffprobe'))}, 'startup':json.loads((DATA/'startup-card.json').read_text()) if (DATA/'startup-card.json').exists() else None})
+            return self.json({'app':'animation-card-lab','instance_id':hashlib.sha256(str(ROOT).encode()).hexdigest()[:16],'references':refs,'cards':cards,'default_source':str(SOURCE.relative_to(PROJECT)) if SOURCE.exists() else '', 'version':'0.3.0', 'capabilities':{'ffmpeg':bool(shutil.which('ffmpeg')),'ffprobe':bool(shutil.which('ffprobe'))}, 'startup':json.loads((DATA/'startup-card.json').read_text()) if (DATA/'startup-card.json').exists() else None})
         if url.startswith('/data/'):
             path=(ROOT/url.lstrip('/')).resolve(); allowed=DATA
         elif url.startswith('/qa/'):
@@ -121,7 +121,6 @@ class Handler(BaseHTTPRequestHandler):
                 return self.json(analyze(PROJECT/obj['source'],float(obj['start']),float(obj['end']),str(obj.get('notes',''))[:6000]))
             if self.path=='/api/save':
                 card=export_service.validate_card(obj['card'])
-                if card.get('kind') not in ('emphasis','compare','steps','chapter'): raise ValueError('未知卡片类型')
                 dur=float(card['duration'])
                 if not math.isfinite(dur) or not 1<=dur<=20: raise ValueError('时长须为 1–20 秒')
                 ref=card.get('referenceId')

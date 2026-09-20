@@ -1,8 +1,8 @@
-# 动画卡片实验室 · 免费使用版 v0.2
+# 动画卡片实验室 · 免费使用版 v0.3
 
 本地制作可编辑动画卡片：选卡 → 换内容 → 预览 → 导出；也可导入参考视频，抽帧观察后手工重建。
 
-**当前为免费测试版。** [下载 v0.2 试用包](https://github.com/a148325128-max/animation-card-lab/releases/tag/v0.2.0-beta.1) · [反馈问题](https://github.com/a148325128-max/animation-card-lab/issues)
+**当前为免费测试版。** [下载 v0.3 试用包](https://github.com/a148325128-max/animation-card-lab/releases/tag/v0.3.0-beta.1) · [反馈问题](https://github.com/a148325128-max/animation-card-lab/issues)
 
 **源码公开，允许免费使用；禁止修改程序源码和二次出售。** 这不是标准开源许可。完整规则见 [LICENSE.md](LICENSE.md)，第三方依赖见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。GitHub 平台条款允许的查看和 Fork 不受排除，但不因此额外授权修改或转售。
 
@@ -16,11 +16,11 @@
 
 ## 当前能力
 
-- 4 种卡片：大字强调、数据对比、三步流程、目录转章节。
+- 12 种卡片：大字强调、数据对比、三步流程、目录转章节、金句引用、勾选清单、三点时间线、条形数据、环形进度、打字机、人物名牌、三项指标。
 - 修改内容和 Logo，保存卡片库；导出横/竖 720p、24fps、无声 MP4，以及 SVG、JSON、独立 HTML。
 - 导入本地视频，选取最多 12 秒片段，抽取 15 帧并记录观察；重建结构由使用者手工选择。
 
-自动 AI 分析/仿写、音频自动配时、透明视频和付费功能尚未接入。已完成同一台 Mac 的清洁解压验证，尚未完成其他电脑或 Windows/Linux 验证。
+自动 AI 分析/仿写、音频自动配时、透明视频和付费功能尚未接入。已完成同一台 Mac 的清洁解压验证，12 种卡片的横竖屏均实际导出了视频（共 24 段）；尚未完成其他电脑或 Windows/Linux 验证。
 
 ## 文件与反馈
 

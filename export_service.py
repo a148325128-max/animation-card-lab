@@ -5,7 +5,7 @@ from pathlib import Path
 LOCK=threading.Lock()
 
 def validate_card(c):
-    if not isinstance(c,dict) or c.get('kind') not in ('emphasis','compare','steps','chapter'):raise ValueError('卡片类型无效')
+    if not isinstance(c,dict) or c.get('kind') not in ('emphasis','compare','steps','chapter','quote','checklist','timeline','bars','progress','typewriter','lowerthird','metrics'):raise ValueError('卡片类型无效')
     for key in ('name','title','brand','value','unit','subtitle','footer'):
         if not isinstance(c.get(key),str) or len(c[key])>1000:raise ValueError('文字字段无效或超过1000字')
     if not c['name'].strip() or not c['title'].strip():raise ValueError('请填写名称和标题')
@@ -30,14 +30,19 @@ def validate_card(c):
         if len(matches)<occ:raise ValueError('找不到触发词句')
         time=matches[int(occ)-1]['time']
     elif tr['mode']!='time':raise ValueError('触发方式无效')
-    if time+c['motion']['enter']+(2*c['motion']['stagger'] if c['kind']=='steps' else 0)>duration-c['motion']['exit']:raise ValueError('入场和退场重叠')
-    if c['kind'] in ('steps','chapter'):
-        count=3 if c['kind']=='steps' else 4
+    if time+c['motion']['enter']+(2*c['motion']['stagger'] if c['kind'] in ('steps','checklist','timeline','bars','metrics') else 0)>duration-c['motion']['exit']:raise ValueError('入场和退场重叠')
+    if c['kind'] in ('steps','chapter','checklist','timeline'):
+        count=4 if c['kind']=='chapter' else 3
         if len(c['steps'])!=count or any(not isinstance(x,str) or not x.strip() or len(x)>200 for x in c['steps']):raise ValueError(f'请填写{count}项内容')
-    if c['kind']=='compare':
-        if len(c['rows'])!=2:raise ValueError('请填写两行数据')
+    if c['kind'] in ('compare','bars','metrics'):
+        count=2 if c['kind']=='compare' else 3
+        if len(c['rows'])!=count:raise ValueError(f'请填写{count}行数据')
         for row in c['rows']:
             if any(not isinstance(row.get(k),str) or len(row[k])>200 for k in ('label','value','unit')) or not row['label'].strip() or not row['value'].strip():raise ValueError('对比数据无效')
+    def numeric(v):return re.fullmatch(r'[0-9]+(?:\.[0-9]+)?',v.strip()) and math.isfinite(float(v))
+    if c['kind']=='bars' and (any(not numeric(r['value']) for r in c['rows']) or len({r['unit'].strip() for r in c['rows']})!=1):raise ValueError('条形数据须为非负数字，且三行单位一致')
+    if c['kind']=='progress' and (not numeric(c['value']) or float(c['value'])>100):raise ValueError('环形进度须填写0–100的数字')
+    if c['kind'] in ('emphasis','chapter','quote','progress','typewriter','lowerthird') and not c['value'].strip():raise ValueError('请填写主要内容')
     if c['kind']=='chapter':
         p=c['chapter']
         for k,lo,hi in [('focusAt',0,10),('swapAt',0,15),('settleAt',0,18),('zoom',1,1.35),('selected',0,3)]:number(p[k],lo,hi)

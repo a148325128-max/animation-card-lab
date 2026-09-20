@@ -1,13 +1,13 @@
 {
-  "version": "0.2.0",
+  "version": "0.3.0",
   "files": [
     {
       "path": "server.py",
-      "sha256": "5eee88450c540c0644b231b9d2a467aef3ab3b87730685776b00b287bb0fc65d"
+      "sha256": "a5a47b5a52ce332ac44b688368fbcb591f30a8c04d81fad0777a2d9ac322c962"
     },
     {
       "path": "export_service.py",
-      "sha256": "54b3f0e5044e0b0e992fa9d70ac3834c45045e42cf7a8d1e711973064d74312c"
+      "sha256": "df626ca559ae7e4ef37d3498a0d182239d8ec3c4854d22ecbd0426c3cb2a3f4a"
     },
     {
       "path": "打开动画卡片实验室.command",
@@ -15,11 +15,11 @@
     },
     {
       "path": "开始使用.md",
-      "sha256": "0fb1a0e887cd2cb47ce184db83ccf1c72697a3e1910b94592bd77622315ed86d"
+      "sha256": "522557305def927e5b7645d5597d38e7263b7b85d242b41acdece2b701ac6536"
     },
     {
       "path": "DEPENDENCIES.md",
-      "sha256": "0f79da0d14e1cdf9dab9b9a86c969a77bbc1696c836cbbebba5bf8ccd298231d"
+      "sha256": "1ece0814bb766a4497ec6177a76ea0a0132cdc219bb21437df18ed8858b92c4e"
     },
     {
       "path": "LICENSE.md",
@@ -27,11 +27,11 @@
     },
     {
       "path": "THIRD_PARTY_NOTICES.md",
-      "sha256": "d7bd04d654b1ab0e74d107c63cfed9bae301af47e28347d80989c3466c8bd293"
+      "sha256": "940b3bd1c6e9de32c2bc34ef7f11801c79d804a3fa471563ddb9a9bf5360979f"
     },
     {
       "path": "README.md",
-      "sha256": "75cfde1a4f7b06ee296f19e93b95de7f939a1e696638fbcfc1f9fe377ac8da55"
+      "sha256": "8d02addd4836767c89dd447b9c395e8f7ea7e6894064e2f876ddb6b09db08ba0"
     },
     {
       "path": ".gitignore",
@@ -39,27 +39,27 @@
     },
     {
       "path": "scripts/open-lab.py",
-      "sha256": "8a9c900d2852a0506c041b63c8b54432c205ccd09c4ddbab1a4edcce67018781"
+      "sha256": "b93f215db91951f38d5c8b690579d236f7aae269c006a5156fc79dcba7d8ba12"
     },
     {
       "path": "web/app.js",
-      "sha256": "98f360462d2fa32865ddecccd48d65d8c6a9087839eb3004a790596f13c616ed"
+      "sha256": "19433a488e301971e65d5aaab515787b821776be926988f5052ee79ca7c159bc"
     },
     {
       "path": "web/index.html",
-      "sha256": "e5e8dbb00a8283f675db6b6c44eaf026ce94c91e310dd4736b97d9db333dafd0"
+      "sha256": "51f847598dfdfcb95c9c1620f577b6750330e25238c4ecab0b9d536d9c056ec6"
     },
     {
       "path": "web/renderer.js",
-      "sha256": "af63b9ec45401689463e4a180fb1431bda8343c1e7ee03c7e5f5844959e3f624"
+      "sha256": "8aafdceee6a764cbd1676403d115116b211d5a4b35c94a4ad4ab505d9c7c8f47"
     },
     {
       "path": "web/style.css",
-      "sha256": "bcfd6bb3b2e0f3146ddcb7ea9034cf6479bdf1bd52a70b50f02b507b2aaa55ae"
+      "sha256": "9d136fdaab97eb01171afc5d2b84c6123b6579f94af115f75f9ca7c38f47436e"
     },
     {
       "path": "web/trial.js",
-      "sha256": "454916787680b285feabc3e467ebf7c2237b342d54982b4666db7ae0df9823a8"
+      "sha256": "4f06bc71ccd811eeb18edd0669669d57595d7cd643ff0c54c7d6103c3b38cff3"
     }
   ],
   "excludes": [

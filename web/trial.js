@@ -1,11 +1,23 @@
 /* Local trial workflows. Uses browser SVG rasterization for deterministic frames. */
 let renderBusy=false,study=false;
+const templateNames={chapter:'聚焦目录，再进入章节',emphasis:'突出数字或一句重要观点',compare:'让两组数据清楚对照',steps:'把过程拆成三个清晰步骤',quote:'留住一句值得记住的话',checklist:'逐项勾选，讲清行动要点',timeline:'沿时间线回顾三个节点',bars:'用长度比较三组真实数据',progress:'用环形刻度呈现完成比例',typewriter:'让关键句随文字逐步出现',lowerthird:'介绍人物、身份与话题',metrics:'把三项关键指标放在一起'};
 function preset(kind){
- const c=Lab.defaults();c.kind=kind;c.referenceId=null;c.brand='YOUR BRAND';c.footer='';c.logo='';c.trigger.mode='time';
+ const c=Lab.defaults();c.kind=kind;c.referenceId=null;c.brand='YOUR BRAND';c.footer='';c.logo='';c.trigger.mode='time';c.trigger.time=.15;
  if(kind==='chapter'){Object.assign(c,{name:'目录转章节',title:'一个想法，可以做成什么？',value:'把内容，做成可操作的页面',unit:'每一次表达，都有新的可能',subtitle:'从一张卡片开始',steps:['知识手册','演示页面','动态卡片','运营看板']});c.trigger.time=0;c.motion.style='fade';c.motion.enter=.2;c.motion.exit=.2;c.layout.font=78;}
- if(kind==='emphasis')Object.assign(c,{name:'大字强调',title:'让你的重点，被一眼看见',value:'1280',unit:'个新可能',subtitle:'数字、观点、结论，都能成为主角'});
+ if(kind==='emphasis')Object.assign(c,{name:'大字强调',title:'让你的重点，被一眼看见',value:'1280',unit:'个新可能',subtitle:'用数字与观点，突出你的重点'});
  if(kind==='compare'){Object.assign(c,{name:'数据对比',title:'同一件事，两种效率',subtitle:'示例数据，请替换为自己的实测结果'});c.trigger.time=.15;}
  if(kind==='steps'){Object.assign(c,{name:'三步流程',title:'把一个想法，变成实际成果',subtitle:'一步一步，让复杂变简单'});c.trigger.time=.15;}
+ const additional={
+  quote:{name:'金句引用',title:'今天，记住这一句',value:'先完成一小步，\n再走向下一步。',unit:'写给正在开始的你',subtitle:'一句话，也能给人行动的力量',accent:'#ead2af',background:'#faf4eb'},
+  checklist:{name:'勾选清单',title:'发布之前，检查三件事',steps:['标题是否清楚','信息是否准确','声音是否清晰'],subtitle:'确认完成，再按下发布',accent:'#b9ded2'},
+  timeline:{name:'三点时间线',title:'一个项目的三个时刻',steps:['第一天 · 确定方向','第三天 · 完成初稿','第七天 · 收集反馈'],subtitle:'按自己的实际进度调整',accent:'#c7d8ed',background:'#f0f4f8',ink:'#263c53'},
+  bars:{name:'条形数据',title:'三种方案，一眼比较',rows:[{label:'方案 A',value:'35',unit:'分'},{label:'方案 B',value:'62',unit:'分'},{label:'方案 C',value:'88',unit:'分'}],subtitle:'示例数据，请替换为自己的实测结果',accent:'#c6cfef',background:'#f4f3fa',ink:'#343955'},
+  progress:{name:'环形进度',title:'今天的目标，完成多少？',value:'75',unit:'当前完成度',subtitle:'示例进度，请填写 0–100 的百分比',accent:'#e9c38b',background:'#faf4e8',ink:'#59412d'},
+  typewriter:{name:'打字机',title:'让一句话，慢慢出现',value:'今天开始，\n把想法做出来。',unit:'一条创作笔记',subtitle:'把这里换成你想说的话',accent:'#b8d8d6',background:'#edf5f2',ink:'#214642'},
+  lowerthird:{name:'人物名牌',title:'分享一个实用的小方法',value:'你的名字',unit:'内容创作者 · 专注你的领域',subtitle:'把经验，讲得清楚一点',accent:'#d9c9ec',background:'#f6f1fa',ink:'#443654'},
+  metrics:{name:'三项指标',title:'这一阶段，我们做了什么？',rows:[{label:'完成内容',value:'12',unit:'条视频'},{label:'整理资料',value:'36',unit:'份笔记'},{label:'收集反馈',value:'8',unit:'条建议'}],subtitle:'示例数据，请填写真实成果',accent:'#c9e0cb'}
+ };
+ if(additional[kind]){Object.assign(c,additional[kind]);c.motion.enter=.45;c.motion.stagger=.28;c.layout.font=82;}
  c.interpretation='独立设计的通用卡片，未自动从当前视频识别。';return c;
 }
 function setMode(value){
@@ -37,9 +49,10 @@ async function renderMP4(){
  finally{controls.forEach(([e,disabled])=>e.disabled=disabled);renderBusy=false;button.disabled=false;button.textContent='导出 MP4 视频 ↗';document.body.classList.remove('rendering');}
 }
 function setupTrial(){
- const names={chapter:'聚焦目录，再进入章节',emphasis:'突出数字或一句重要观点',compare:'让两组数据清楚对照',steps:'把过程拆成三个清晰步骤'};
- for(const kind of ['chapter','emphasis','compare','steps']){
-  const c=preset(kind),b=document.createElement('button');b.className='template-card';b.dataset.template=kind;b.innerHTML=`<div class="template-thumb">${CardRenderer.renderCard(c,1.7)}</div><strong>${c.name}</strong><small>${names[kind]}</small>`;
+ document.getElementById('studyKind').replaceChildren();
+ for(const kind of Object.keys(templateNames)){
+  const c=preset(kind),option=document.createElement('option');option.value=kind;option.textContent=c.name;document.getElementById('studyKind').append(option);
+  const b=document.createElement('button');b.className='template-card';b.dataset.template=kind;b.innerHTML=`<div class="template-thumb">${CardRenderer.renderCard(c,1.9)}</div><strong>${c.name}</strong><small>${templateNames[kind]}</small>`;
   b.onclick=()=>{if(renderBusy)return;Lab.loadCard(preset(kind));document.querySelectorAll('.template-card').forEach(x=>x.classList.toggle('active',x===b));Lab.status('已选择'+c.name+'，修改右侧内容即可使用。');};document.getElementById('templates').append(b);
  }
  document.getElementById('studyMode').onclick=()=>setMode(true);document.getElementById('useMode').onclick=()=>setMode(false);setMode(false);
@@ -56,4 +69,4 @@ function setupTrial(){
  if(!Lab.getState().startup)Lab.loadCard(preset('emphasis'));
 }
 if(window.Lab?.getCard())setupTrial();else window.addEventListener('labready',setupTrial,{once:true});
-window.Trial={preset,setMode,isExporting:()=>renderBusy};
+window.Trial={preset,setMode,kinds:Object.keys(templateNames),isExporting:()=>renderBusy};

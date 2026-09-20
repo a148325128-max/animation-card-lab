@@ -12,8 +12,12 @@ function fields(){
  $('triggerTime').value=card.trigger.time;
  $('cues').value=card.cues.map(x=>`${x.time} | ${x.text}`).join('\n');
  $('rows').value=card.rows.map(x=>`${x.label} | ${x.value} | ${x.unit}`).join('\n');$('steps').value=card.steps.join('\n');
- for(const kind of ['emphasis','compare','steps','chapter'])$(kind+'Fields').hidden=card.kind!==kind;
- if(card.kind==='chapter'){$('emphasisFields').hidden=false;$('stepsFields').hidden=false;}
+ $('emphasisFields').hidden=!['emphasis','chapter','quote','progress','typewriter','lowerthird'].includes(card.kind);
+ $('compareFields').hidden=!['compare','bars','metrics'].includes(card.kind);
+ $('stepsFields').hidden=!['steps','chapter','checklist','timeline'].includes(card.kind);
+ $('chapterFields').hidden=card.kind!=='chapter';
+ $('value').inputMode=card.kind==='progress'?'decimal':'text';
+ $('cardFieldHint').textContent=card.kind==='progress'?'填写 0–100 的数字，表示百分比。':card.kind==='bars'?'填写三行数据；数值须为非负数字，三组使用相同单位。':card.kind==='metrics'?'填写三行：指标名称 | 数值 | 单位。':card.kind==='lowerthird'?'大字填写姓名，说明填写身份；当前导出仍为实色背景。':'';
  for(const k of ['focusAt','swapAt','settleAt','zoom'])$(k).value=card.chapter[k];$('selected').value=Number(card.chapter.selected)+1;
  document.querySelectorAll('[data-kind]').forEach(b=>b.classList.toggle('active',b.dataset.kind===card.kind));
  $('seek').max=card.duration;render();
@@ -23,9 +27,14 @@ function problems(){
  if(card.kind==='chapter'){const p=card.chapter;if(card.steps.length!==4)issues.push('目录转章节需要四个目录项');if(!(p.focusAt<p.swapAt&&p.swapAt<p.settleAt&&p.settleAt+.5+Number(CardRenderer.triggerTime(card).time||0)<=card.duration-card.motion.exit))issues.push('阶段须按聚焦→替换→缩回排序，并在退场前结束');}
  const tr=CardRenderer.triggerTime(card);
  if(!tr.resolved)issues.push('找不到触发词句，请调整词句或时间标记');
- if(tr.resolved&&(tr.time<0||tr.time+card.motion.enter+(card.kind==='steps'?2*card.motion.stagger:0)>card.duration-card.motion.exit))issues.push('入场与退场时间重叠，请延长时长或提前触发');
- if(card.kind==='compare'&&(card.rows.length!==2||card.rows.some(r=>!r.label||!r.value)))issues.push('数据对比需要两行名称与数值');
- if(card.kind==='steps'&&(card.steps.length!==3||card.steps.some(s=>!s)))issues.push('流程卡需要三个步骤');
+ const staggered=['steps','checklist','timeline','bars','metrics'].includes(card.kind);
+ if(tr.resolved&&(tr.time<0||tr.time+card.motion.enter+(staggered?2*card.motion.stagger:0)>card.duration-card.motion.exit))issues.push('入场与退场时间重叠，请延长时长或提前触发');
+ if(['compare','bars','metrics'].includes(card.kind)){const count=card.kind==='compare'?2:3;if(card.rows.length!==count||card.rows.some(r=>!r.label.trim()||!r.value.trim()))issues.push('请填写'+count+'行名称与数值');}
+ if(['steps','checklist','timeline'].includes(card.kind)&&(card.steps.length!==3||card.steps.some(s=>!s.trim())))issues.push('请填写三个内容项');
+ const numeric=v=>/^\d+(\.\d+)?$/.test(v.trim())&&Number.isFinite(Number(v));
+ if(card.kind==='bars'&&(card.rows.some(r=>!numeric(r.value))||new Set(card.rows.map(r=>r.unit.trim())).size!==1))issues.push('条形数据须为非负数字，且三行单位一致');
+ if(card.kind==='progress'&&(!numeric(card.value)||Number(card.value)>100))issues.push('环形进度须填写0–100的数字');
+ if(['emphasis','chapter','quote','progress','typewriter','lowerthird'].includes(card.kind)&&!card.value.trim())issues.push('请填写主要内容');
  if(card.cues.some(x=>!Number.isFinite(x.time)||x.time<0||x.time>=card.duration))issues.push('词句时间标记超出卡片时长');
  if(!card.title.trim()||!card.name.trim())issues.push('请填写卡片名称与主标题');
  return issues;
