@@ -97,10 +97,6 @@ python3 scripts/agent-cli.py render gradient --params gradient.json --wait
 
 接口支持列出15模板、读取默认参数、传参渲染、查询结果、上传视频和抽帧。必须等任务 `done` 并核对成片，不能把提交成功说成渲染成功。详见 [AGENT_API.md](AGENT_API.md)。当前是本机 CLI/HTTP，不是远程 MCP 服务。
 
-## 免费与后续付费方向
-
-当前15模板、换内容、保存参数、动画导出、手工拉片和本地agent调用均可免费使用。后续付费方向是更多动画模板、可参考案例和继续创作的能力；数量、价格与交付方式尚未确定，当前没有收款或付费解锁流程。
-
 ## 使用规则与当前范围
 
 源码公开，允许免费使用；禁止修改程序源码和二次出售。**这不是标准开源许可。** 正常修改文字、图片、Logo、颜色和动画参数，以及制作、发布和商业使用成片均获允许。具体以 [LICENSE.md](LICENSE.md) 为准，第三方依赖见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
