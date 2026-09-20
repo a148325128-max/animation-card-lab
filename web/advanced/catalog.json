@@ -1,0 +1,1011 @@
+[
+  {
+    "id": "chapter",
+    "name": "目录转章节",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "chapter",
+      "name": "目录转章节",
+      "brand": "YOUR BRAND",
+      "title": "一个想法，可以做成什么？",
+      "value": "把内容，做成可操作的页面",
+      "unit": "每一次表达，都有新的可能",
+      "subtitle": "从一张卡片开始",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "知识手册",
+        "演示页面",
+        "动态卡片",
+        "运营看板"
+      ],
+      "logo": "",
+      "background": "#f7f5ea",
+      "accent": "#d7e6a0",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 78,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "fade",
+        "enter": 0.2,
+        "exit": 0.2,
+        "easing": "easeOut",
+        "stagger": 0.3
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "emphasis",
+    "name": "大字强调",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "emphasis",
+      "name": "大字强调",
+      "brand": "YOUR BRAND",
+      "title": "让你的重点，被一眼看见",
+      "value": "1280",
+      "unit": "个新可能",
+      "subtitle": "用数字与观点，突出你的重点",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#f7f5ea",
+      "accent": "#d7e6a0",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 92,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.4,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.3
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "compare",
+    "name": "数据对比",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "compare",
+      "name": "数据对比",
+      "brand": "YOUR BRAND",
+      "title": "同一件事，两种效率",
+      "value": "246",
+      "unit": "个词条",
+      "subtitle": "示例数据，请替换为自己的实测结果",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#f7f5ea",
+      "accent": "#d7e6a0",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 92,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.4,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.3
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "steps",
+    "name": "三步流程",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "steps",
+      "name": "三步流程",
+      "brand": "YOUR BRAND",
+      "title": "把一个想法，变成实际成果",
+      "value": "246",
+      "unit": "个词条",
+      "subtitle": "一步一步，让复杂变简单",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#f7f5ea",
+      "accent": "#d7e6a0",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 92,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.4,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.3
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "quote",
+    "name": "金句引用",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "quote",
+      "name": "金句引用",
+      "brand": "YOUR BRAND",
+      "title": "今天，记住这一句",
+      "value": "先完成一小步，\n再走向下一步。",
+      "unit": "写给正在开始的你",
+      "subtitle": "一句话，也能给人行动的力量",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#faf4eb",
+      "accent": "#ead2af",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "checklist",
+    "name": "勾选清单",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "checklist",
+      "name": "勾选清单",
+      "brand": "YOUR BRAND",
+      "title": "发布之前，检查三件事",
+      "value": "246",
+      "unit": "个词条",
+      "subtitle": "确认完成，再按下发布",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "标题是否清楚",
+        "信息是否准确",
+        "声音是否清晰"
+      ],
+      "logo": "",
+      "background": "#f7f5ea",
+      "accent": "#b9ded2",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "timeline",
+    "name": "三点时间线",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "timeline",
+      "name": "三点时间线",
+      "brand": "YOUR BRAND",
+      "title": "一个项目的三个时刻",
+      "value": "246",
+      "unit": "个词条",
+      "subtitle": "按自己的实际进度调整",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "第一天 · 确定方向",
+        "第三天 · 完成初稿",
+        "第七天 · 收集反馈"
+      ],
+      "logo": "",
+      "background": "#f0f4f8",
+      "accent": "#c7d8ed",
+      "ink": "#263c53",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "bars",
+    "name": "条形数据",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "bars",
+      "name": "条形数据",
+      "brand": "YOUR BRAND",
+      "title": "三种方案，一眼比较",
+      "value": "246",
+      "unit": "个词条",
+      "subtitle": "示例数据，请替换为自己的实测结果",
+      "footer": "",
+      "rows": [
+        {
+          "label": "方案 A",
+          "value": "35",
+          "unit": "分"
+        },
+        {
+          "label": "方案 B",
+          "value": "62",
+          "unit": "分"
+        },
+        {
+          "label": "方案 C",
+          "value": "88",
+          "unit": "分"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#f4f3fa",
+      "accent": "#c6cfef",
+      "ink": "#343955",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "progress",
+    "name": "环形进度",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "progress",
+      "name": "环形进度",
+      "brand": "YOUR BRAND",
+      "title": "今天的目标，完成多少？",
+      "value": "75",
+      "unit": "当前完成度",
+      "subtitle": "示例进度，请填写 0–100 的百分比",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#faf4e8",
+      "accent": "#e9c38b",
+      "ink": "#59412d",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "typewriter",
+    "name": "打字机",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "typewriter",
+      "name": "打字机",
+      "brand": "YOUR BRAND",
+      "title": "让一句话，慢慢出现",
+      "value": "今天开始，\n把想法做出来。",
+      "unit": "一条创作笔记",
+      "subtitle": "把这里换成你想说的话",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#edf5f2",
+      "accent": "#b8d8d6",
+      "ink": "#214642",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "lowerthird",
+    "name": "人物名牌",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "lowerthird",
+      "name": "人物名牌",
+      "brand": "YOUR BRAND",
+      "title": "分享一个实用的小方法",
+      "value": "你的名字",
+      "unit": "内容创作者 · 专注你的领域",
+      "subtitle": "把经验，讲得清楚一点",
+      "footer": "",
+      "rows": [
+        {
+          "label": "修改前",
+          "value": "30",
+          "unit": "分钟 · 示例数据"
+        },
+        {
+          "label": "修改后",
+          "value": "8",
+          "unit": "分钟 · 示例数据"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#f6f1fa",
+      "accent": "#d9c9ec",
+      "ink": "#443654",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "metrics",
+    "name": "三项指标",
+    "engine": "basic",
+    "free": true,
+    "parameters": {
+      "schemaVersion": 1,
+      "kind": "metrics",
+      "name": "三项指标",
+      "brand": "YOUR BRAND",
+      "title": "这一阶段，我们做了什么？",
+      "value": "246",
+      "unit": "个词条",
+      "subtitle": "示例数据，请填写真实成果",
+      "footer": "",
+      "rows": [
+        {
+          "label": "完成内容",
+          "value": "12",
+          "unit": "条视频"
+        },
+        {
+          "label": "整理资料",
+          "value": "36",
+          "unit": "份笔记"
+        },
+        {
+          "label": "收集反馈",
+          "value": "8",
+          "unit": "条建议"
+        }
+      ],
+      "steps": [
+        "选取参考",
+        "调整动画",
+        "保存复用"
+      ],
+      "logo": "",
+      "background": "#f7f5ea",
+      "accent": "#c9e0cb",
+      "ink": "#253f35",
+      "aspect": "16:9",
+      "duration": 4,
+      "layout": {
+        "font": 82,
+        "scale": 1,
+        "x": 0,
+        "y": 0
+      },
+      "motion": {
+        "style": "rise",
+        "enter": 0.45,
+        "exit": 0.35,
+        "easing": "easeOut",
+        "stagger": 0.28
+      },
+      "trigger": {
+        "mode": "time",
+        "time": 0.15,
+        "phrase": "246",
+        "occurrence": 1
+      },
+      "cues": [
+        {
+          "time": 0,
+          "text": "一份中文解释手册"
+        },
+        {
+          "time": 1,
+          "text": "246个词条"
+        }
+      ],
+      "chapter": {
+        "focusAt": 0.65,
+        "swapAt": 2,
+        "settleAt": 2.65,
+        "zoom": 1.22,
+        "selected": 1
+      },
+      "referenceId": null,
+      "interpretation": "独立设计的通用卡片，未自动从当前视频识别。"
+    }
+  },
+  {
+    "id": "orbit",
+    "name": "毛玻璃与图标环绕",
+    "engine": "orbit",
+    "free": true,
+    "parameters": {
+      "variant": "player",
+      "logoImages": [],
+      "title": "把想法，转成看得见的作品",
+      "labels": [
+        "灵感收集",
+        "今天的创作",
+        "画面笔记",
+        "保持好奇",
+        "新的尝试",
+        "下一段故事"
+      ],
+      "accent": "#b5d9ff",
+      "period": 8,
+      "direction": 1,
+      "radius": 252,
+      "blur": 12,
+      "opacity": 0.16,
+      "aspect": "3:4",
+      "subject": "none",
+      "subjectImage": "",
+      "subjectScale": 1
+    }
+  },
+  {
+    "id": "carousel",
+    "name": "纵向卡片轮播",
+    "engine": "studies",
+    "free": true,
+    "parameters": {
+      "duration": 9,
+      "images": [
+        "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22724%22%20viewBox%3D%220%200%201280%20724%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23f2b596%22%2F%3E%3Cstop%20offset%3D%22.58%22%20stop-color%3D%22%238dbaca%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%231d6584%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22sea%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23148ea3%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23062e54%22%2F%3E%3C%2FlinearGradient%3E%3CradialGradient%20id%3D%22sun%22%3E%3Cstop%20stop-color%3D%22%23fffbd6%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffdbaf%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url(%23sky)%22%20d%3D%22M0%200h1280v724H0z%22%2F%3E%3Ccircle%20cx%3D%22908%22%20cy%3D%22207%22%20r%3D%2286%22%20fill%3D%22url(%23sun)%22%2F%3E%3Cpath%20d%3D%22M0%20468%20236%20303%20470%20484%20659%20391%20933%20496%201280%20374V724H0Z%22%20fill%3D%22%23486e88%22%2F%3E%3Cpath%20d%3D%22M0%20517%20239%20422%20537%20542%20855%20452%201280%20487V724H0Z%22%20fill%3D%22%23285774%22%2F%3E%3Cpath%20fill%3D%22url(%23sea)%22%20d%3D%22M0%20541Q331%20477%20655%20554T1280%20527V724H0Z%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23a1ecdc%22%20stroke-width%3D%223%22%20opacity%3D%22.54%22%3E%3Cpath%20d%3D%22M566%20591q177-28%20346%200%22%2F%3E%3Cpath%20d%3D%22M368%20634q258-37%20548-3%22%2F%3E%3Cpath%20d%3D%22M658%20673q189-17%20387%200%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M0%20641q169-65%20280-6%20133%2070%20214%2089H0Z%22%20fill%3D%22%23072e43%22%2F%3E%3C%2Fsvg%3E",
+        "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22724%22%20viewBox%3D%220%200%201280%20724%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23281d4e%22%2F%3E%3Cstop%20offset%3D%22.65%22%20stop-color%3D%22%2378588b%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23d18c9e%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22hill%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23a080d0%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%233d3268%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22river%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23e9b4f8%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%233ba0ce%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url(%23sky)%22%20d%3D%22M0%200h1280v724H0z%22%2F%3E%3Ccircle%20cx%3D%22858%22%20cy%3D%22188%22%20r%3D%2292%22%20fill%3D%22%23eee2f5%22%2F%3E%3Ccircle%20cx%3D%22896%22%20cy%3D%22161%22%20r%3D%2292%22%20fill%3D%22%23483462%22%2F%3E%3Cg%20fill%3D%22%23f9dbfb%22%3E%3Ccircle%20cx%3D%22164%22%20cy%3D%22106%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22301%22%20cy%3D%22202%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%221078%22%20cy%3D%22104%22%20r%3D%223%22%2F%3E%3Ccircle%20cx%3D%22649%22%20cy%3D%22115%22%20r%3D%222%22%2F%3E%3Ccircle%20cx%3D%221173%22%20cy%3D%22259%22%20r%3D%222%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M0%20461%20187%20271%20355%20434%20604%20305%20868%20483%201099%20346%201280%20451V724H0Z%22%20fill%3D%22%23514376%22%2F%3E%3Cpath%20d%3D%22M0%20507Q185%20369%20413%20451T847%20474Q1103%20369%201280%20471V724H0Z%22%20fill%3D%22url(%23hill)%22%2F%3E%3Cpath%20d%3D%22M0%20605Q212%20493%20411%20558T852%20552Q1113%20470%201280%20540V724H0Z%22%20fill%3D%22%23332b56%22%2F%3E%3Cpath%20d%3D%22M719%20466Q600%20510%20739%20544T659%20618Q485%20660%20662%20724H950Q748%20664%20822%20625T821%20565Q642%20516%20743%20466Z%22%20fill%3D%22url(%23river)%22%2F%3E%3Cpath%20d%3D%22M0%20724V648Q186%20565%20397%20644T547%20724Z%22%20fill%3D%22%231d2246%22%2F%3E%3C%2Fsvg%3E",
+        "data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221280%22%20height%3D%22724%22%20viewBox%3D%220%200%201280%20724%22%3E%3Cdefs%3E%3ClinearGradient%20id%3D%22sky%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23f5e9ce%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23ffbb83%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22dune%22%20x2%3D%220%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23ed8654%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23c14634%22%2F%3E%3C%2FlinearGradient%3E%3ClinearGradient%20id%3D%22front%22%20x2%3D%221%22%20y2%3D%221%22%3E%3Cstop%20stop-color%3D%22%23733c48%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23211f36%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cpath%20fill%3D%22url(%23sky)%22%20d%3D%22M0%200h1280v724H0z%22%2F%3E%3Ccircle%20cx%3D%22353%22%20cy%3D%22190%22%20r%3D%2298%22%20fill%3D%22%23fff5d9%22%2F%3E%3Cpath%20d%3D%22M0%20493Q184%20359%20335%20384%20624%20426%20830%20340%201119%20256%201280%20357V724H0Z%22%20fill%3D%22%23e9a271%22%2F%3E%3Cpath%20d%3D%22M0%20532Q276%20313%20596%20465T1280%20417V724H0Z%22%20fill%3D%22url(%23dune)%22%2F%3E%3Cpath%20d%3D%22M247%20461Q594%20389%20980%20577T1280%20561V724H0V641Z%22%20fill%3D%22%23a94f42%22%2F%3E%3Cpath%20d%3D%22M0%20608Q243%20570%20447%20679T837%20646Q1060%20472%201280%20475V724H0Z%22%20fill%3D%22url(%23front)%22%2F%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fac295%22%20stroke-width%3D%222%22%20opacity%3D%22.35%22%3E%3Cpath%20d%3D%22M836%20543q217-102%20444-110%22%2F%3E%3Cpath%20d%3D%22M899%20565q190-85%20381-90%22%2F%3E%3Cpath%20d%3D%22M948%20588q163-63%20332-76%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+      ],
+      "titles": [
+        "潮汐之间",
+        "月光山谷",
+        "沙丘漫游"
+      ],
+      "showText": false
+    }
+  },
+  {
+    "id": "gradient",
+    "name": "光流形变片头",
+    "engine": "studies",
+    "free": true,
+    "parameters": {
+      "duration": 10,
+      "title": "灵感，开始成形",
+      "subtitle": "把想法变成作品",
+      "showText": true,
+      "accent": "#39f6d2"
+    }
+  }
+]

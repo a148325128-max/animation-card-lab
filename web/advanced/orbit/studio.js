@@ -1,0 +1,30 @@
+let current={...Orbit.defaults(),variant:'player'},playing=true,elapsed=0,last=performance.now(),busy=false,epoch=0;
+const byId=id=>document.getElementById(id);
+function fitStage(){const stage=byId('stage'),wrap=document.querySelector('.stage-wrap'),holder=document.querySelector('.stage-holder');const w=parseInt(stage.style.width),h=parseInt(stage.style.height),s=Math.min((wrap.clientWidth-26)/w,(wrap.clientHeight-26)/h);holder.style.width=w*s+'px';holder.style.height=h*s+'px';stage.style.transform=`scale(${s})`;}
+window.fitStage=fitStage;window.addEventListener('resize',fitStage);
+function variantFields(){byId('logoUploads').hidden=current.variant!=='logos';byId('variant').value=current.variant;byId('labelsField').hidden=current.variant==='logos';byId('logoHint').hidden=current.variant!=='logos';}
+function fields(){variantFields();byId('labels').value=current.labels.join('\n');for(const key of ['period','direction','radius','blur','opacity','aspect','subjectScale'])byId(key).value=current[key];byId('subjectMode').value=current.subject;byId('seek').max=current.period;}
+function stale(){epoch++;byId('result').hidden=true;}
+async function apply(){variantFields();await Orbit.setConfig(current);byId('seek').max=current.period;elapsed%=current.period;Orbit.renderAt(elapsed);}
+for(const key of ['variant','period','direction','radius','blur','opacity','aspect','subjectScale'])byId(key).addEventListener('input',()=>{current[key]=['aspect','variant'].includes(key)?byId(key).value:Number(byId(key).value);if(key==='period')current.period=Math.max(4,Math.min(16,current.period||8));stale();apply();});
+byId('labels').addEventListener('input',()=>{const labels=byId('labels').value.split('\n').map(x=>x.trim()).filter(Boolean);if(labels.length!==6){byId('status').textContent='请填写六行卡片标题。';return;}current.labels=labels.map(x=>x.slice(0,24));stale();apply();byId('status').textContent='卡片标题已更新。';});
+byId('subjectMode').onchange=()=>{current.subject=byId('subjectMode').value;stale();apply();};
+byId('image').onchange=async e=>{const f=e.target.files[0];if(!f)return;if(!/^image\/(png|jpeg|webp)$/.test(f.type)||f.size>4_000_000){byId('status').textContent='请选择4MB以内的PNG/JPEG/WebP。';return;}const fr=new FileReader();fr.onload=async()=>{current.subjectImage=fr.result;current.subject='image';fields();stale();try{await apply();byId('status').textContent='主体图片已替换，透明部分会保留。';}catch{byId('status').textContent='图片无法读取。';}};fr.readAsDataURL(f);};
+byId('play').onclick=()=>{playing=!playing;byId('play').textContent=playing?'暂停':'播放';last=performance.now();};
+byId('seek').oninput=()=>{playing=false;byId('play').textContent='播放';elapsed=Number(byId('seek').value);Orbit.renderAt(elapsed);};
+function download(name,value,type){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([value],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1500);}
+byId('save').onclick=()=>download('glass-orbit.json',JSON.stringify(current,null,2),'application/json');
+byId('loadButton').onclick=()=>byId('load').click();
+byId('load').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const body=JSON.parse(await f.text());const r=await fetch('/api/advanced/orbit/validate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});const result=await r.json();if(!r.ok)throw Error(result.error);current=result;fields();stale();await apply();byId('status').textContent='参数已恢复。';}catch(err){byId('status').textContent='读取失败：'+err.message;}};
+byId('export').onclick=async()=>{if(busy)return;if(current.variant!=='logos'&&byId('labels').value.split('\n').filter(x=>x.trim()).length!==6){byId('status').textContent='请先填写六行标题。';return;}busy=true;const token=epoch;byId('export').disabled=true;byId('result').hidden=true;const snapshot=structuredClone(current);
+ try{let r=await fetch('/api/advanced/orbit/render',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(snapshot)});let job=await r.json();if(!r.ok)throw Error(job.error);
+  while(!['done','failed'].includes(job.status)){byId('status').textContent=`正在渲染 ${job.frames||0}/${job.total||Math.round(snapshot.period*30)} 帧，完成后会生成下载链接。`;await new Promise(r=>setTimeout(r,800));r=await fetch('/api/advanced/jobs/'+job.id);job=await r.json();if(!r.ok)throw Error(job.error);}
+  if(job.status==='failed')throw Error(job.error||'渲染失败');
+  if(epoch===token){byId('result').href=job.url;byId('result').download=(snapshot.variant==='logos'?'AI-Logo环绕':'毛玻璃环绕')+'-'+snapshot.subject+'.mp4';byId('result').hidden=false;byId('status').textContent=`已导出 ${job.width}×${job.height} · ${job.duration}秒 · 30fps · 无声。`;}else byId('status').textContent='旧参数的视频已完成；当前参数有改动，请重新导出。';
+ }catch(e){byId('status').textContent='导出未完成：'+e.message;}finally{busy=false;byId('export').disabled=false;}
+};
+fields();apply();
+requestAnimationFrame(function tick(now){if(playing&&!busy){elapsed=(elapsed+(now-last)/1000)%current.period;Orbit.renderAt(elapsed);byId('seek').value=elapsed;}last=now;requestAnimationFrame(tick);});
+window.OrbitStudio={setConfig:async c=>{current={...Orbit.defaults(),...c};fields();stale();await apply();},isBusy:()=>busy,pause:()=>{playing=false;byId('play').textContent='播放';}};
+
+for(let i=0;i<6;i++){const label=document.createElement('label');label.textContent='图标 '+(i+1);const input=document.createElement('input');input.type='file';input.accept='image/png,image/jpeg,image/webp';input.id='logoUpload'+i;input.onchange=()=>{const f=input.files[0];if(!f)return;if(!/^image\/(png|jpeg|webp)$/.test(f.type)||f.size>1000000){byId('status').textContent='每张图标请选择1MB以内PNG/JPEG/WebP。';return;}const reader=new FileReader();reader.onload=async()=>{try{const test=new Image();test.src=reader.result;await test.decode();current.logoImages=current.logoImages||[];current.logoImages[i]=reader.result;stale();await apply();byId('status').textContent='图标已更新，可保存参数留用。';}catch{byId('status').textContent='图标无法读取。';}};reader.readAsDataURL(f);};label.append(input);byId('logoUploads').append(label);}

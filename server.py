@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Local-only animation card lab. Python standard library + installed FFmpeg."""
 import argparse, hashlib, json, math, mimetypes, os, re, subprocess, uuid, shutil
-import export_service
+import export_service, advanced_service
 from datetime import datetime, timezone
 from http.server import ThreadingHTTPServer, BaseHTTPRequestHandler
 from pathlib import Path
@@ -54,11 +54,20 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         if self.headers.get('Host','').split(':')[0] not in ('localhost','127.0.0.1'):return self.json({'error':'仅允许本机访问'},403)
         url=unquote(urlsplit(self.path).path)
+        if url=='/api/agent/templates':
+            catalog=json.loads((ROOT/'web/advanced/catalog.json').read_text());return self.json({'apiVersion':1,'templates':[{k:v for k,v in c.items() if k!='parameters'} for c in catalog],'automatic_video_reconstruction':False})
+        if url.startswith('/api/agent/defaults/'):
+            tid=url.rsplit('/',1)[-1];catalog=json.loads((ROOT/'web/advanced/catalog.json').read_text());item=next((x for x in catalog if x['id']==tid),None)
+            return self.json(item if item else {'error':'模板不存在'},200 if item else 404)
+        if url=='/api/advanced/environment':return self.json(advanced_service.environment())
+        if url.startswith('/api/advanced/jobs/'):
+            try:return self.json(advanced_service.job(DATA,url.rsplit('/',1)[-1]))
+            except ValueError as e:return self.json({'error':str(e)},404)
         if url=='/api/state':
             refs=[json.loads(p.read_text()) for p in sorted((DATA/'references').glob('*/analysis.json'))]
             cards=[json.loads(p.read_text()) for p in sorted((DATA/'library').glob('*.json'))]
             cards.sort(key=lambda c:c.get('saved_at','')); refs.sort(key=lambda r:r.get('created_at',''))
-            return self.json({'app':'animation-card-lab','instance_id':hashlib.sha256(str(ROOT).encode()).hexdigest()[:16],'references':refs,'cards':cards,'default_source':str(SOURCE.relative_to(PROJECT)) if SOURCE.exists() else '', 'version':'0.3.0', 'capabilities':{'ffmpeg':bool(shutil.which('ffmpeg')),'ffprobe':bool(shutil.which('ffprobe'))}, 'startup':json.loads((DATA/'startup-card.json').read_text()) if (DATA/'startup-card.json').exists() else None})
+            return self.json({'app':'animation-card-lab','instance_id':hashlib.sha256(str(ROOT).encode()).hexdigest()[:16],'references':refs,'cards':cards,'default_source':str(SOURCE.relative_to(PROJECT)) if SOURCE.exists() else '', 'version':'0.4.0', 'capabilities':{'ffmpeg':bool(shutil.which('ffmpeg')),'ffprobe':bool(shutil.which('ffprobe'))}, 'startup':json.loads((DATA/'startup-card.json').read_text()) if (DATA/'startup-card.json').exists() else None})
         if url.startswith('/data/'):
             path=(ROOT/url.lstrip('/')).resolve(); allowed=DATA
         elif url.startswith('/qa/'):
@@ -109,6 +118,20 @@ class Handler(BaseHTTPRequestHandler):
                     path.unlink(missing_ok=True);raise ValueError('无法读取该视频，请尝试标准MP4文件')
                 result={'source':str(path.relative_to(PROJECT)),'name':name,'duration':duration,'width':stream['width'],'height':stream['height'],'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'url':'/data/'+str(path.relative_to(DATA))}
                 write_json(folder/'source.json',result);return self.json(result,201)
+            if self.path=='/api/agent/render':
+                if not 0<n<19_000_000:raise ValueError('参数超过大小限制')
+                obj=json.loads(self.rfile.read(n));catalog=json.loads((ROOT/'web/advanced/catalog.json').read_text());item=next((x for x in catalog if x['id']==obj.get('template')),None)
+                if not item:raise ValueError('模板不存在')
+                overrides=obj.get('parameters',{})
+                if not isinstance(overrides,dict):raise ValueError('parameters须为对象')
+                params={**item['parameters'],**overrides};config={'kind':item['id'],'settings':params} if item['engine']=='studies' else params
+                return self.json(advanced_service.create(DATA,item['engine'],config,self.server.server_port),201)
+            advanced=re.fullmatch(r'/api/advanced/(orbit|studies|basic)/(validate|render)',self.path)
+            if advanced:
+                if not 0<n<19_000_000:raise ValueError('参数超过大小限制')
+                obj=json.loads(self.rfile.read(n))
+                if advanced[2]=='validate':return self.json(advanced_service.validate(advanced[1],obj))
+                return self.json(advanced_service.create(DATA,advanced[1],obj,self.server.server_port),201)
             match=re.fullmatch(r'/api/export/([0-9a-f]{32})/frame/(\d+)',self.path)
             if match:
                 if not 0<n<8_000_000:raise ValueError('图像超过大小限制')

@@ -47,3 +47,4 @@ url=f'http://127.0.0.1:{port}'
 (root/'qa/server-state.json').write_text(json.dumps({'url':url,'instance_id':expected},indent=2))
 if not args.no_browser:webbrowser.open(url)
 print(url)
+print('3种高级模板预览免费；MP4导出额外环境请运行 python3 scripts/setup-advanced.py。页面会显示环境状态。')

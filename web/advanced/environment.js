@@ -1,0 +1,1 @@
+(async()=>{const el=document.getElementById('env');if(!el)return;try{const r=await fetch('/api/advanced/environment'),s=await r.json();el.textContent=s.ready?'高级动画导出环境已就绪。':s.message+' 安装步骤见包内《开始使用.md》。';}catch{el.textContent='无法读取导出环境，请从本机启动器打开工作台。';}})();
